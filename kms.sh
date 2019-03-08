@@ -147,7 +147,7 @@ install_main() {
         fi
     elif [[ x"${release}" == x"debian" || x"${release}" == x"ubuntu" ]]; then
         apt-get -y update
-        apt-get install gcc git make libnss3 curl libcurl3-nss
+        apt-get install -y gcc git make libnss3 curl libcurl3-nss
         if ! wget --no-check-certificate -O /etc/init.d/kms https://raw.githubusercontent.com/teddysun/across/master/kms-debian; then
             echo -e "[${red}Error:${plain}] Failed to download KMS Server script."
             exit 1
@@ -158,7 +158,7 @@ install_main() {
     fi
 
     cd "${cur_dir}" || exit
-    git clone https://github.com/teddysun/vlmcsd.git > /dev/null 2>&1
+    git clone https://github.com/Wind4/vlmcsd.git > /dev/null 2>&1
     [ -d vlmcsd ] && cd vlmcsd || echo -e "[${red}Error:${plain}] Failed to git clone vlmcsd."
     make
     if [ $? -ne 0 ]; then
